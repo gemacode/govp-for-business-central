@@ -1,5 +1,7 @@
 codeunit 71102 "GOVP Shipment Issuer"
 {
+    Permissions = tabledata "Sales Shipment Header" = rm;
+
     procedure Issue(var Shipment: Record "Sales Shipment Header")
     var
         Setup: Record "GOVP Setup";

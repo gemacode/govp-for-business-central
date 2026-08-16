@@ -12,6 +12,9 @@ for (const required of ["Source.Add('platform', 'business_central')", 'DataScope
 if (!source.includes('permissionset 71100 "GOVP Admin"') || !source.includes('tabledata "GOVP Setup" = RIMD')) {
   throw new Error('Missing least-privilege setup permission set');
 }
+if (!source.includes('Permissions = tabledata "Sales Shipment Header" = rm;')) {
+  throw new Error('Shipment issuer must declare indirect modify permission for posted shipment GOVP linkage');
+}
 for (const forbidden of ['Dataverse', 'Opportunity', 'CRM']) {
   if (source.includes(forbidden)) throw new Error(`Business Central connector must remain independent from ${forbidden}`);
 }
