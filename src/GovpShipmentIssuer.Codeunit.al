@@ -44,7 +44,7 @@ codeunit 71102 "GOVP Shipment Issuer"
     local procedure BuildPayload(Shipment: Record "Sales Shipment Header"; Setup: Record "GOVP Setup"; IssuerName: Text; var Payload: JsonObject)
     var
         CryptographyManagement: Codeunit "Cryptography Management";
-        HashAlgorithm: Enum "Hash Algorithm";
+        HashAlgorithmType: Option MD5,SHA1,SHA256,SHA384,SHA512;
         Issuer: JsonObject;
         Subject: JsonObject;
         Source: JsonObject;
@@ -58,7 +58,7 @@ codeunit 71102 "GOVP Shipment Issuer"
         Evidence.Add('label', StrSubstNo('Business Central posted shipment %1', Shipment."No."));
         Evidence.Add('sha256', LowerCase(CryptographyManagement.GenerateHash(
             StrSubstNo('%1|%2|%3|%4|%5', Shipment."No.", Shipment."Posting Date", Shipment."Sell-to Customer No.", Shipment."Ship-to Code", NormalizedSystemId(Shipment.SystemId)),
-            HashAlgorithm::SHA256)));
+            HashAlgorithmType::SHA256)));
         EvidenceList.Add(Evidence);
         Source.Add('platform', 'business_central');
         Source.Add('externalId', NormalizedSystemId(Shipment.SystemId));

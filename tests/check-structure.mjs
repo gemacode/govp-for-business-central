@@ -9,6 +9,9 @@ const source = readdirSync(resolve(root, 'src')).filter((name) => name.endsWith(
 for (const required of ["Source.Add('platform', 'business_central')", 'DataScope::Company', 'IsolatedStorage.Set', "'/connectors/issue'", "'Idempotency-Key'", 'tableextension 71100']) {
   if (!source.includes(required)) throw new Error(`Missing contract marker: ${required}`);
 }
+if (!source.includes('permissionset 71100 "GOVP Admin"') || !source.includes('tabledata "GOVP Setup" = RIMD')) {
+  throw new Error('Missing least-privilege setup permission set');
+}
 for (const forbidden of ['Dataverse', 'Opportunity', 'CRM']) {
   if (source.includes(forbidden)) throw new Error(`Business Central connector must remain independent from ${forbidden}`);
 }
