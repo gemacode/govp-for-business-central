@@ -1,0 +1,8 @@
+{
+  "name": "@gemacode/govp-for-business-central",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node tests/check-structure.mjs", "check": "npm test" },
+  "license": "Apache-2.0"
+}

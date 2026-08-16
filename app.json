@@ -1,0 +1,20 @@
+{
+  "id": "da5cfc4f-fb6a-4b3e-b318-582381448a54",
+  "name": "GOVP for Business Central",
+  "publisher": "Gemacode",
+  "version": "0.1.0.0",
+  "brief": "Issue GOVPs from posted sales shipments.",
+  "description": "Connects Microsoft Dynamics 365 Business Central posted sales shipments to GOVP Exchange.",
+  "privacyStatement": "https://govp.io/privacy",
+  "EULA": "https://www.apache.org/licenses/LICENSE-2.0",
+  "help": "https://github.com/gemacode/govp-for-business-central",
+  "url": "https://govp.io",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "26.0.0.0",
+  "application": "26.0.0.0",
+  "idRanges": [{ "from": 71100, "to": 71149 }],
+  "runtime": "15.0",
+  "features": ["NoImplicitWith", "TranslationFile"]
+}
