@@ -10,6 +10,7 @@ codeunit 71102 "GOVP Shipment Issuer"
         Payload: JsonObject;
         Govp: JsonObject;
         GovpToken: JsonToken;
+        IssuerName: Text;
         ErrorText: Text;
     begin
         if not Setup.Get('') then
@@ -22,7 +23,10 @@ codeunit 71102 "GOVP Shipment Issuer"
         end;
 
         Company.Get(CompanyName());
-        BuildPayload(Shipment, Setup, Company."Display Name", Payload);
+        IssuerName := Company."Display Name";
+        if IssuerName = '' then
+            IssuerName := CompanyName();
+        BuildPayload(Shipment, Setup, IssuerName, Payload);
         Shipment."GOVP Status" := Shipment."GOVP Status"::Issuing;
         Shipment."GOVP Last Error" := '';
         Shipment.Modify(true);

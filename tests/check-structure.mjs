@@ -15,6 +15,9 @@ if (!source.includes('permissionset 71100 "GOVP Admin"') || !source.includes('ta
 if (!source.includes('Permissions = tabledata "Sales Shipment Header" = rm;')) {
   throw new Error('Shipment issuer must declare indirect modify permission for posted shipment GOVP linkage');
 }
+if (!source.includes("if IssuerName = '' then") || !source.includes('IssuerName := CompanyName();')) {
+  throw new Error('Shipment issuer must fall back to the tenant company name when the display name is empty');
+}
 for (const forbidden of ['Dataverse', 'Opportunity', 'CRM']) {
   if (source.includes(forbidden)) throw new Error(`Business Central connector must remain independent from ${forbidden}`);
 }
